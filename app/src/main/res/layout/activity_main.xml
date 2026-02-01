@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B1220">
+
+    <!-- ===== ОСНОВНИЙ КОНТЕНТ (ПО ЦЕНТРУ) ===== -->
+
+    <!-- ===== FOOTER (СТРОГО ВНИЗУ) ===== -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="803dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- TITLE (long press -> API settings) -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:longClickable="true"
+            android:text="Термінал NFC"
+            android:textColor="#EAF0FF"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_horizontal"
+            android:text="Сканування пропусків співробітників"
+            android:textColor="#9AA8C7"
+            android:textSize="14sp" />
+
+        <!-- STATUS CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="534dp"
+            android:layout_marginTop="18dp"
+            android:background="#0F1A33"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.12"
+                android:text="СТАН"
+                android:textColor="#9AA8C7"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="439dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:lineSpacingExtra="6dp"
+                android:text="Очікування сканування…"
+                android:textColor="#EAF0FF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="Піднесіть NFC-картку або телефон на 1–2 секунди."
+                android:textColor="#9AA8C7"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- MODE CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="126dp"
+            android:layout_marginTop="14dp"
+            android:background="#111827"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.12"
+                android:text="РЕЖИМ"
+                android:textColor="#9AA8C7"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/registerModeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Реєстрація (перший скан)"
+                android:textColor="#EAF0FF"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/modeHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="1.Увімкніть лише для додавання нового співробітника.
+                   2.Довгий тап по заголовку додатку — зміна адреси API."
+                android:textColor="#9AA8C7"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="12dp"
+        android:text="StelSuy Terminal"
+        android:textSize="12sp"
+        android:textColor="#6F7FA6"
+        android:gravity="center"
+        android:alpha="0.85" />
+
+</FrameLayout>
