@@ -41,9 +41,6 @@ class MainActivity : AppCompatActivity() {
     private var lastReadAt = 0L
     private val READ_COOLDOWN_MS = 1500L
 
-    private val TERMINAL_ID_INT = 1
-    private val TERMINAL_ID_STR = "T1"
-
     // ===== Auto clear logs after idle =====
     private val CLEAR_LOG_DELAY_MS = 15_000L
     private val clearLogHandler = Handler(Looper.getMainLooper())
@@ -194,7 +191,7 @@ class MainActivity : AppCompatActivity() {
                     ApiClient.api(this@MainActivity).firstScan(
                         FirstScanRequest(
                             employee_uid = employeeUid,
-                            terminal_id = TERMINAL_ID_STR,
+                            terminal_id = prefs.getTerminalIdStr(),
                             public_key_b64 = publicKeyB64
                         )
                     )
@@ -236,7 +233,7 @@ class MainActivity : AppCompatActivity() {
                 val resp = ApiClient.api(this@MainActivity).secureScan(
                     SecureScanRequest(
                         employee_uid = employeeUid,
-                        terminal_id = TERMINAL_ID_INT,
+                        terminal_id = prefs.getTerminalId(),
                         direction = direction,
                         ts = ts,
                         challenge_b64 = challengeB64,
@@ -316,22 +313,55 @@ class MainActivity : AppCompatActivity() {
         clearLogHandler.postDelayed(clearLogRunnable, CLEAR_LOG_DELAY_MS)
     }
 
-    // ===== Діалог зміни API =====
+    // ===== Діалог налаштувань =====
     private fun showApiDialog() {
-        val input = EditText(this)
-        input.inputType = InputType.TYPE_CLASS_TEXT
-        input.setText(prefs.getBaseUrl())
-        input.setSelection(input.text.length)
+        val layout = android.widget.LinearLayout(this).apply {
+            orientation = android.widget.LinearLayout.VERTICAL
+            val pad = (16 * resources.displayMetrics.density).toInt()
+            setPadding(pad, pad, pad, 0)
+        }
+
+        val labelUrl = TextView(this).apply { text = "Адреса сервера:" }
+        val inputUrl = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_TEXT
+            setText(prefs.getBaseUrl())
+            hint = "192.168.0.101:8000"
+        }
+
+        val labelKey = TextView(this).apply { text = "\nAPI-ключ терміналу (X-Terminal-Key):" }
+        val inputKey = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_TEXT
+            setText(prefs.getApiKey())
+            hint = "Вставте ключ з адмін-панелі"
+        }
+
+        val labelId = TextView(this).apply { text = "\nTerminal ID (число):" }
+        val inputId = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_NUMBER
+            setText(prefs.getTerminalId().toString())
+        }
+
+        layout.addView(labelUrl)
+        layout.addView(inputUrl)
+        layout.addView(labelKey)
+        layout.addView(inputKey)
+        layout.addView(labelId)
+        layout.addView(inputId)
 
         AlertDialog.Builder(this)
-            .setTitle("Адреса API")
-            .setMessage("Вкажіть IP/домен сервера.\nПриклад: 192.168.0.101:8000 або https://api.site.com")
-            .setView(input)
+            .setTitle("Налаштування терміналу")
+            .setView(layout)
             .setNegativeButton("Скасувати", null)
             .setPositiveButton("Зберегти") { _, _ ->
-                prefs.setBaseUrl(input.text.toString())
+                prefs.setBaseUrl(inputUrl.text.toString())
+                prefs.setApiKey(inputKey.text.toString())
+                val tid = inputId.text.toString().toIntOrNull() ?: 1
+                prefs.setTerminalId(tid)
+                prefs.setTerminalIdStr("T$tid")
                 ApiClient.reload(this)
                 logUi("API: ${ApiClient.currentBaseUrl(this)}")
+                logUi("Terminal ID: $tid")
+                logUi("API-ключ: ${if (prefs.getApiKey().isNotBlank()) "встановлено ✅" else "не задано ⚠️"}")
                 Toast.makeText(this, "Збережено ✅", Toast.LENGTH_SHORT).show()
             }
             .show()

@@ -17,8 +17,14 @@ class Prefs(ctx: Context) {
         sp.edit().putString("base_url", normalizeBaseUrl(v)).apply()
     }
 
-    fun getTerminalId(): String = sp.getString("terminal_id", "ENTRANCE_1")!!
-    fun setTerminalId(v: String) = sp.edit().putString("terminal_id", v.trim()).apply()
+    fun getTerminalId(): Int = sp.getInt("terminal_id_int", 1)
+    fun setTerminalId(v: Int) = sp.edit().putInt("terminal_id_int", v).apply()
+
+    fun getTerminalIdStr(): String = sp.getString("terminal_id_str", "T1")!!
+    fun setTerminalIdStr(v: String) = sp.edit().putString("terminal_id_str", v.trim()).apply()
+
+    fun getApiKey(): String = sp.getString("api_key", "")!!
+    fun setApiKey(v: String) = sp.edit().putString("api_key", v.trim()).apply()
 
     fun getDirection(): String = sp.getString("direction", "IN")!!
     fun setDirection(v: String) = sp.edit().putString("direction", v.trim()).apply()
