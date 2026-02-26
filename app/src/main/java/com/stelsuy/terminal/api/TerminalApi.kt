@@ -9,6 +9,9 @@ interface TerminalApi {
     @POST("api/register/first-scan")
     suspend fun firstScan(@Body body: FirstScanRequest): FirstScanResponse
 
+    @POST("api/terminal/challenge")
+    suspend fun getChallenge(@Body body: ChallengeRequest): ChallengeResponse
+
     @POST("api/terminal/secure-scan")
     suspend fun secureScan(@Body body: SecureScanRequest): SecureScanResponse
 }

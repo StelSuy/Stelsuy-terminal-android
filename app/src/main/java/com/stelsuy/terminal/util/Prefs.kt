@@ -29,6 +29,9 @@ class Prefs(ctx: Context) {
     fun getDirection(): String = sp.getString("direction", "IN")!!
     fun setDirection(v: String) = sp.edit().putString("direction", v.trim()).apply()
 
+    fun isSetupDone(): Boolean = sp.getBoolean("setup_done", false)
+    fun setSetupDone(v: Boolean) = sp.edit().putBoolean("setup_done", v).apply()
+
     private fun normalizeBaseUrl(input: String): String {
         var s = input.trim()
 

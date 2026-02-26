@@ -4,7 +4,6 @@ import android.nfc.Tag
 import android.nfc.tech.IsoDep
 import android.util.Base64
 import java.nio.charset.Charset
-import java.security.SecureRandom
 
 object NfcHceReader {
 
@@ -13,7 +12,6 @@ object NfcHceReader {
     private const val AID = "F0010203040506"
 
     private val swOk = byteArrayOf(0x90.toByte(), 0x00.toByte())
-    private val rnd = SecureRandom()
 
     fun readEmp(tag: Tag): ReadResult = transceiveText(tag, cmd = hex("00CA000000"))
     fun readPub(tag: Tag): ReadResult = transceiveText(tag, cmd = hex("00CC000000"))
@@ -23,13 +21,10 @@ object NfcHceReader {
         return transceiveText(tag, cmd)
     }
 
-    fun newChallenge(len: Int = 24): ByteArray {
-        val b = ByteArray(len)
-        rnd.nextBytes(b)
-        return b
-    }
-
     fun toB64(bytes: ByteArray): String = Base64.encodeToString(bytes, Base64.NO_WRAP)
+
+    // URL_SAFE потрібен бо сервер використовує secrets.token_urlsafe() (символи - і _)
+    fun fromB64(s: String): ByteArray = Base64.decode(s, Base64.URL_SAFE or Base64.NO_WRAP)
 
     private fun transceiveText(tag: Tag, cmd: ByteArray): ReadResult {
         val iso = IsoDep.get(tag) ?: return ReadResult(false, error = "IsoDep not supported")
