@@ -1,15 +1,39 @@
+# ===== Android / Gradle =====
 *.iml
-.gradle
+.gradle/
 /local.properties
-/.idea/caches
-/.idea/libraries
+/build/
+/app/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# ===== IntelliJ / Android Studio =====
+/.idea/caches/
+/.idea/libraries/
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea/.gitignore
+
+# ===== macOS =====
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+
+# ===== Kotlin / JVM =====
+*.class
+*.jar
+*.aar
+out/
+
+# ===== Keystore (НІКОЛИ не комітити!) =====
+*.jks
+*.keystore
+keystore.properties
+
+# ===== Secrets / Environment =====
+secrets.properties
+api_keys.properties
+
+# ===== Логи =====
+*.log
