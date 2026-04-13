@@ -24,7 +24,7 @@
 
 ### Overview
 
-**Stelsuy Terminal** is an Android application that acts as a stationary NFC reader terminal. It is mounted at an office entrance and communicates with employee phones running the [stelsuy-employee-hce](https://github.com/your-org/stelsuy-employee-hce) app.
+**Stelsuy Terminal** is an Android application that acts as a stationary NFC reader terminal. It is mounted at an office entrance and communicates with employee phones running the [stelsuy-employee-hce](https://github.com/StelSuy/Stelsuy-employee-hce ) app.
 
 The terminal does **not** use traditional NFC cards or tags. Instead, it reads data from employee Android phones via **ISO 14443-4 / IsoDep** and performs a cryptographic challenge–response handshake to guarantee authenticity before sending an attendance event to the backend server.
 
@@ -162,7 +162,7 @@ stelsuy-terminal-android/
 | Repository | Description |
 |---|---|
 | [stelsuy-backend](https://github.com/StelSuy/diplom_v2) | FastAPI backend — attendance server |
-| [stelsuy-employee-hce](https://github.com/StelSuy/Stelsuy-employee-hce )) | Android HCE badge app (employee phone) |
+| [stelsuy-employee-hce](https://github.com/StelSuy/Stelsuy-employee-hce ) | Android HCE badge app (employee phone) |
 
 ---
 
