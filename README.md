@@ -162,7 +162,7 @@ stelsuy-terminal-android/
 | Repository | Description |
 |---|---|
 | [stelsuy-backend](https://github.com/StelSuy/diplom_v2) | FastAPI backend — attendance server |
-| [stelsuy-employee-hce](https://github.com/your-org/stelsuy-employee-hce) | Android HCE badge app (employee phone) |
+| [stelsuy-employee-hce](https://github.com/StelSuy/Stelsuy-employee-hce )) | Android HCE badge app (employee phone) |
 
 ---
 
