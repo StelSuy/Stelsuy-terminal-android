@@ -212,5 +212,5 @@ git clone https://github.com/your-org/stelsuy-terminal-android.git
 ---
 
 <p align="center">
-  Розроблено як частина дипломного проєкту · 2024–2025
+  Розроблено як частина дипломного проєкту · 2026
 </p>
